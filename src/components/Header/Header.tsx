@@ -54,6 +54,7 @@ export const Header = ({
         `w-full flex-row pt-${top + 3} pb-3 items-center px-4`,
         containerStyle,
       )}>
+        
       <View style={tw`flex-1 flex-row justify-between items-center`}>
         <View style={tw`flex-1`}>
           <View style={tw`flex-row`}>

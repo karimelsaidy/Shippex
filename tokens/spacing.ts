@@ -3,8 +3,8 @@
 const spacing = {
  "extraSmall": "6px",
  "tiny": "8px",
- "med": "16px",
- "med2": "20px",
+ "meduim1": "14px",
+ "meduim2": "20px",
  "large": "30px",
  "xlarge": "40px",
  "xxlarge": "50px"

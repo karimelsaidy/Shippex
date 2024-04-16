@@ -10,11 +10,12 @@ import moment from 'moment';
 import React from 'react';
 
 import {Routes} from '@/navigation';
-import {WelcomeScreen} from '@/screens';
+import {LogIn, WelcomeScreen} from '@/screens';
 import tw from '@/tw';
 
 import {appLang} from '../utils';
 import {AuthStackParamListType} from '.';
+import {Text} from 'react-native';
 
 const customThem = {
   ...DefaultTheme,
@@ -38,6 +39,13 @@ export const AppNavigation = () => {
         }}
         initialRouteName={Routes.WELCOME_SCREEN}>
         <Stack.Screen name={Routes.WELCOME_SCREEN} component={WelcomeScreen} />
+        <Stack.Screen
+          name={Routes.LOGIN}
+          component={LogIn}
+          options={{
+            presentation: 'modal',
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
