@@ -1,0 +1,13 @@
+{
+  "holder": {"holder": "Main"},
+  "auth": {
+    "login": "Login",
+    "loginSub": "Please enter your First, Last name and your phone number in order to register",
+    "userName": "User Name",
+    "password": "Password"
+  },
+  "errorMessages": {
+    "required": "Required field."
+  },
+  "buttons": {"login": "Login", "cancel": "Cancel"}
+}

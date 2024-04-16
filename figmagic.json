@@ -1,0 +1,16 @@
+{
+  "outputFormatColors": "hex",
+  "borderWidthUnit": "px",
+  "radiusUnit": "px",
+  "shadowUnit": "px",
+  "fontUnit": "px",
+  "spacingUnit": "px",
+  "templates": {
+    "templatePathGraphic": "node_modules/figmagic/templates/graphic",
+    "templatePathReact": "node_modules/figmagic/templates/react",
+    "templatePathStorybook": "node_modules/figmagic/templates/story",
+    "templatePathStyled": "node_modules/figmagic/templates/styled"
+  },
+  "url": "", /* url for the system design tokens to extract colors border fontSizes...etc */
+  "token": "" /* token to access  the system design tokens file */
+}
