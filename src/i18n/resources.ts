@@ -1,5 +1,1 @@
-import { merge } from 'lodash';
-
-import { commonStrings } from '@/assets/translation';
-
-export const resources = merge({}, commonStrings);
+export {commonStrings} from '@/assets/translation';
