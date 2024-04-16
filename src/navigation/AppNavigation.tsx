@@ -7,11 +7,10 @@ import {
 } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import moment from 'moment';
-import React, {useEffect} from 'react';
+import React from 'react';
 
 import {Routes} from '@/navigation';
 import {WelcomeScreen} from '@/screens';
-import {useStore} from '@/store';
 import tw from '@/tw';
 
 import {appLang} from '../utils';
@@ -30,18 +29,6 @@ export const AppNavigation = () => {
 
   const Stack = createNativeStackNavigator<AuthStackParamListType>();
   const navigationRef = useNavigationContainerRef();
-
-  const storeLoaded = useStore(
-    (state: {_hasHydrated: boolean}) => state._hasHydrated,
-  );
-
-  useEffect(() => {
-    // storeLoaded && RNBootSplash.hide({fade: true}); // fade with custom duration
-  }, [storeLoaded]);
-
-  if (!storeLoaded) {
-    return null;
-  }
 
   return (
     <NavigationContainer theme={customThem} ref={navigationRef}>
