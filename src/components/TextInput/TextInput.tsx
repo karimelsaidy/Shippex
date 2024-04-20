@@ -76,7 +76,7 @@ export const TextInput: React.FC<Props> = ({
             onBlur={() => setFocused(false)}
             placeholderTextColor={tw.color('gray2')}
             style={[
-              tw` flex-1 interReg text-secondary4  self-center px-5 ${
+                tw` flex-1 overflow-hidden  interReg text-secondary4  self-center px-5 mb-.5 h-full ${
                 isRtl ? 'text-right' : 'text-left'
               } `,
               props.value
