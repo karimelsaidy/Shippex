@@ -4,9 +4,11 @@ import {Controller, useForm} from 'react-hook-form';
 import {useTranslation} from 'react-i18next';
 import {ScrollView, Text, View} from 'react-native';
 import Animated from 'react-native-reanimated';
+import Toast, {ToastConfig} from 'react-native-toast-message';
 
 import {KeyboardTranslation} from '@/assets';
 import {Button, Header, TextInput} from '@/components';
+import {toastConfig} from '@/config';
 import tw from '@/tw';
 import {loginValidation} from '@/validation';
 
@@ -140,6 +142,11 @@ export const LogIn = () => {
           </View>
         </Animated.View>
       </ScrollView>
+      <Toast
+        config={toastConfig as ToastConfig}
+        visibilityTime={5000}
+        topOffset={55}
+      />
     </View>
   );
 };
