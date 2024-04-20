@@ -1,11 +1,6 @@
 import React, {FC} from 'react';
-import {
-  ActivityIndicator,
-  Pressable,
-  Text,
-  TextStyle,
-  ViewStyle,
-} from 'react-native';
+import {Pressable, Text, TextStyle, ViewStyle} from 'react-native';
+import {MaterialIndicator} from 'react-native-indicators';
 import Animated from 'react-native-reanimated';
 
 import tw from '@/tw';
@@ -30,7 +25,7 @@ export const Button: FC<Props> = ({
   variant = 'primary',
   outLineTextStyle = 'primary',
   loading,
-  loadingIndicatorColor = tw.color('gray'),
+  loadingIndicatorColor,
   disabled,
   textStyle,
   btnStyle = {},
@@ -42,13 +37,19 @@ export const Button: FC<Props> = ({
     secondary: disabled
       ? ' bg-primary opacity-20 border border-gray'
       : tw`bg-secondary  border border-gray`,
-    tertiary: disabled ? tw`` : tw`bg-azuWhite`,
+    tertiary: disabled ? tw`opacity-40` : tw`bg-azuWhite`,
   };
 
   const preDifinedTextStyle = {
     primary: tw`text-secondary`,
     secondary: tw`text-primary`,
     tertiary: disabled ? tw`text-gray4` : tw`text-secondary`,
+  };
+
+  const indicatorColor = {
+    primary: disabled ? tw.color('gray4') : tw.color('secondary'),
+    secondary: disabled ? tw.color('gray4') : tw.color('primary'),
+    tertiary: disabled ? tw.color('gray4') : tw.color('secondary'),
   };
 
   const AnimatedButton = Animated.createAnimatedComponent(Pressable);
@@ -67,7 +68,10 @@ export const Button: FC<Props> = ({
         (LoadingComponent ? (
           <LoadingComponent />
         ) : (
-          <ActivityIndicator size="small" color={loadingIndicatorColor} />
+          <MaterialIndicator
+            size={20}
+            color={loadingIndicatorColor || indicatorColor[outLineTextStyle]}
+          />
         ))}
       {children}
 

@@ -4,15 +4,20 @@ import {Controller, useForm} from 'react-hook-form';
 import {useTranslation} from 'react-i18next';
 import {ScrollView, Text, View} from 'react-native';
 import Animated from 'react-native-reanimated';
+import Toast, {ToastConfig} from 'react-native-toast-message';
 
 import {KeyboardTranslation} from '@/assets';
 import {Button, Header, TextInput} from '@/components';
+import {toastConfig} from '@/config';
+import {Navigation, Routes} from '@/navigation';
+import {useLoginHooks} from '@/screens/Auth/hooks';
 import tw from '@/tw';
 import {loginValidation} from '@/validation';
 
 import {CancelButton, PasswordEye} from './Components';
 
 type loginForm = {
+  url: string;
   userName: string;
   password: string;
 };
@@ -20,17 +25,30 @@ export const LogIn = () => {
   const {t} = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const {translateStyle} = KeyboardTranslation({keyboardFactor: 5});
+  const {login, loading} = useLoginHooks();
 
-  const _onSubmit = () => {};
+  const {authNavigation} = Navigation();
+
+  const _onSubmit = async (data: loginForm) => {
+    const response = await login({
+      userNameOrEmail: data.userName,
+      password: data.password,
+    });
+    response.status &&
+      authNavigation.reset({
+        index: 0,
+        routes: [{name: Routes.HOME_TABS}],
+      });
+  };
 
   const {
     control,
     formState: {errors},
     handleSubmit,
     formState: {isSubmitted},
-    getFieldState,
   } = useForm<loginForm>({
     defaultValues: {
+      url: '',
       userName: '',
       password: '',
     },
@@ -60,6 +78,26 @@ export const LogIn = () => {
             </View>
             <Controller
               control={control}
+              name="url"
+              render={({
+                field: {onChange, onBlur, value, ref},
+                fieldState: {isDirty},
+              }) => (
+                <TextInput
+                  label={t('auth.url')}
+                  containerStyle={tw`mt-[10%]`}
+                  value={value}
+                  onChangeText={onChange}
+                  placeholder={t('auth.url')}
+                  error={isSubmitted && !!errors.url?.message}
+                  errorMsg={
+                    isSubmitted && errors.url?.message && t(errors.url?.message)
+                  }
+                />
+              )}
+            />
+            <Controller
+              control={control}
               name="userName"
               render={({
                 field: {onChange, onBlur, value, ref},
@@ -67,7 +105,7 @@ export const LogIn = () => {
               }) => (
                 <TextInput
                   label={t('auth.userName')}
-                  containerStyle={tw`mt-[10%]`}
+                  containerStyle={tw`mt-[5%]`}
                   value={value}
                   onChangeText={onChange}
                   placeholder={t('auth.userName')}
@@ -114,11 +152,17 @@ export const LogIn = () => {
               label={t('buttons.login')}
               variant="secondary"
               outLineTextStyle="secondary"
+              loading={loading}
               onPress={handleSubmit(_onSubmit)}
             />
           </View>
         </Animated.View>
       </ScrollView>
+      <Toast
+        config={toastConfig as ToastConfig}
+        visibilityTime={5000}
+        topOffset={55}
+      />
     </View>
   );
 };

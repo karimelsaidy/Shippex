@@ -10,12 +10,11 @@ import moment from 'moment';
 import React from 'react';
 
 import {Routes} from '@/navigation';
-import {LogIn, WelcomeScreen} from '@/screens';
+import {Home, LogIn, WelcomeScreen} from '@/screens';
 import tw from '@/tw';
 
 import {appLang} from '../utils';
 import {AuthStackParamListType} from '.';
-import {Text} from 'react-native';
 
 const customThem = {
   ...DefaultTheme,
@@ -46,6 +45,7 @@ export const AppNavigation = () => {
             presentation: 'modal',
           }}
         />
+        <Stack.Screen name={Routes.HOME_TABS} component={Home} />
       </Stack.Navigator>
     </NavigationContainer>
   );

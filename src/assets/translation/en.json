@@ -4,10 +4,13 @@
     "login": "Login",
     "loginSub": "Please enter your First, Last name and your phone number in order to register",
     "userName": "User Name",
-    "password": "Password"
+    "password": "Password",
+    "url": "URL"
   },
   "errorMessages": {
-    "required": "Required field."
+    "required": "Required field.",
+    "wrongUrl": "that's not a valid url",
+    "serverError": "An unexpected error occurred"
   },
   "buttons": {"login": "Login", "cancel": "Cancel"}
 }
