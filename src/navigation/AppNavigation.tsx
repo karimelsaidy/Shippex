@@ -14,8 +14,7 @@ import {LogIn, WelcomeScreen} from '@/screens';
 import tw from '@/tw';
 
 import {appLang} from '../utils';
-import {AuthStackParamListType} from '.';
-import {Text} from 'react-native';
+import {BottomTabs, RootStackParamList} from '.';
 
 const customThem = {
   ...DefaultTheme,
@@ -28,7 +27,7 @@ const customThem = {
 export const AppNavigation = () => {
   moment.locale(appLang);
 
-  const Stack = createNativeStackNavigator<AuthStackParamListType>();
+  const Stack = createNativeStackNavigator<RootStackParamList>();
   const navigationRef = useNavigationContainerRef();
 
   return (
@@ -37,7 +36,7 @@ export const AppNavigation = () => {
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName={Routes.WELCOME_SCREEN}>
+        initialRouteName={Routes.HOME_TABS}>
         <Stack.Screen name={Routes.WELCOME_SCREEN} component={WelcomeScreen} />
         <Stack.Screen
           name={Routes.LOGIN}
@@ -46,6 +45,7 @@ export const AppNavigation = () => {
             presentation: 'modal',
           }}
         />
+        <Stack.Screen name={Routes.HOME_TABS} component={BottomTabs} />
       </Stack.Navigator>
     </NavigationContainer>
   );

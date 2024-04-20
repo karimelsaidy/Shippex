@@ -54,7 +54,6 @@ export const Header = ({
         `w-full flex-row pt-${top + 3} pb-3 items-center px-4`,
         containerStyle,
       )}>
-        
       <View style={tw`flex-1 flex-row justify-between items-center`}>
         <View style={tw`flex-1`}>
           <View style={tw`flex-row`}>
@@ -118,9 +117,10 @@ export const Header = ({
                   />
                 )}
                 <Icon
-                  name="notification-bing"
-                  color={tw.color('black')}
-                  style={tw` bg-gray4 rounded-full p-2 mx-2`}
+                  name="notifications-outline"
+                  type="ionicon"
+                  color={tw.color('secondary')}
+                  style={tw` bg-primary2 rounded-full p-2 mx-2`}
                   onPress={notificationOnPress}
                 />
               </View>
