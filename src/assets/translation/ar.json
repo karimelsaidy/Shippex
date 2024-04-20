@@ -1,6 +1,9 @@
 {
-  "holder": {
-    "holder": "الرئيسية"
+  "routes": {
+    "home": "الرئيسية",
+    "scan": "مسح",
+    "wallet": "المحفظة",
+    "profile": "حسابي"
   },
   "auth": {
     "login": "تسجيل الدخول",

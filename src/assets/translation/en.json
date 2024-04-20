@@ -1,5 +1,10 @@
 {
-  "holder": {"holder": "Main"},
+  "routes": {
+    "home": "Main",
+    "scan": "Scan",
+    "wallet": "Wallet",
+    "profile": "Profile"
+  },
   "auth": {
     "login": "Login",
     "loginSub": "Please enter your First, Last name and your phone number in order to register",
@@ -12,5 +17,16 @@
     "wrongUrl": "that's not a valid url",
     "serverError": "An unexpected error occurred"
   },
-  "buttons": {"login": "Login", "cancel": "Cancel"}
+  "home": {"origin": "Origin", "destination": "Destination"},
+  "buttons": {
+    "login": "Login",
+    "cancel": "Cancel",
+    "received": "RECEIVED",
+    "error": "ERROR",
+    "delivered": "DELIVERED",
+    "canceled": "CANCELED",
+    "onHold": "ON HOLD",
+    "whatsApp": "WhatsApp",
+    "call": "Call"
+  }
 }
