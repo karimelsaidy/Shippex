@@ -31,6 +31,7 @@ export const LogIn = () => {
     getFieldState,
   } = useForm<loginForm>({
     defaultValues: {
+      url: '',
       userName: '',
       password: '',
     },
@@ -60,6 +61,26 @@ export const LogIn = () => {
             </View>
             <Controller
               control={control}
+              name="url"
+              render={({
+                field: {onChange, onBlur, value, ref},
+                fieldState: {isDirty},
+              }) => (
+                <TextInput
+                  label={t('auth.url')}
+                  containerStyle={tw`mt-[10%]`}
+                  value={value}
+                  onChangeText={onChange}
+                  placeholder={t('auth.url')}
+                  error={isSubmitted && !!errors.url?.message}
+                  errorMsg={
+                    isSubmitted && errors.url?.message && t(errors.url?.message)
+                  }
+                />
+              )}
+            />
+            <Controller
+              control={control}
               name="userName"
               render={({
                 field: {onChange, onBlur, value, ref},
@@ -67,7 +88,7 @@ export const LogIn = () => {
               }) => (
                 <TextInput
                   label={t('auth.userName')}
-                  containerStyle={tw`mt-[10%]`}
+                  containerStyle={tw`mt-[5%]`}
                   value={value}
                   onChangeText={onChange}
                   placeholder={t('auth.userName')}
