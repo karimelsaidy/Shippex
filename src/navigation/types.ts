@@ -6,6 +6,7 @@ import {Routes} from '@/navigation';
 export type AuthStackParamListType = {
   [Routes.WELCOME_SCREEN]: undefined;
   [Routes.LOGIN]: undefined;
+  [Routes.HOME_TABS]: undefined;
 };
 
 export type AuthNavigationPropsType =
