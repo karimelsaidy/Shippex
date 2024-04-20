@@ -7,13 +7,24 @@ const colors = {
 "secondary2":"#4561DB",
 "secondary3":"#4169E1",
 "secondary4":"#6E91EC",
+"secondary5":"#5B4CCC",
+"secondary6":"#C8CEF1",
 "gray":"#757281",
 "black":"#000000",
+"black2":"#3F395C",
 "independence":"#58536E",
 "azuWhite":"#D9E6FD",
 "gray2":"#A7A3B3",
+"gray3":"#D0D5DD",
 "red2": "#ffede0",
 "red": '#fe826d',
+"red3":"#FEE3D4",
+"red4":"#D12030",
+"green":"#208D28",
+"green2":"#E3FAD6",
+"green3":"#25D366",
+"yellow":"#DB7E21",
+"yellow2":"#FFF3D5"
 
 } as const;
 

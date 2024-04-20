@@ -1,11 +1,22 @@
 import {useNavigation} from '@react-navigation/native';
 
-import {AuthNavigationPropsType} from './types';
+import {
+  HomeParamsListTabs,
+  HomeTabScreenProps,
+  RootStackParamList,
+  RootStackScreenProps,
+} from './types';
 
 export const Navigation = () => {
-  const authNavigation = useNavigation<AuthNavigationPropsType>();
+  const authNavigation =
+    useNavigation<
+      RootStackScreenProps<keyof RootStackParamList>['navigation']
+    >();
+  const homeNavigation =
+    useNavigation<HomeTabScreenProps<keyof HomeParamsListTabs>['navigation']>();
 
   return {
     authNavigation,
+    homeNavigation,
   };
 };
