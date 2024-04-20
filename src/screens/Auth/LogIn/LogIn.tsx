@@ -9,12 +9,15 @@ import Toast, {ToastConfig} from 'react-native-toast-message';
 import {KeyboardTranslation} from '@/assets';
 import {Button, Header, TextInput} from '@/components';
 import {toastConfig} from '@/config';
+import {Navigation, Routes} from '@/navigation';
+import {useLoginHooks} from '@/screens/Auth/hooks';
 import tw from '@/tw';
 import {loginValidation} from '@/validation';
 
 import {CancelButton, PasswordEye} from './Components';
 
 type loginForm = {
+  url: string;
   userName: string;
   password: string;
 };
@@ -22,15 +25,27 @@ export const LogIn = () => {
   const {t} = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const {translateStyle} = KeyboardTranslation({keyboardFactor: 5});
+  const {login, loading} = useLoginHooks();
 
-  const _onSubmit = () => {};
+  const {authNavigation} = Navigation();
+
+  const _onSubmit = async (data: loginForm) => {
+    const response = await login({
+      userNameOrEmail: data.userName,
+      password: data.password,
+    });
+    response.status &&
+      authNavigation.reset({
+        index: 0,
+        routes: [{name: Routes.HOME_TABS}],
+      });
+  };
 
   const {
     control,
     formState: {errors},
     handleSubmit,
     formState: {isSubmitted},
-    getFieldState,
   } = useForm<loginForm>({
     defaultValues: {
       url: '',
@@ -137,6 +152,7 @@ export const LogIn = () => {
               label={t('buttons.login')}
               variant="secondary"
               outLineTextStyle="secondary"
+              loading={loading}
               onPress={handleSubmit(_onSubmit)}
             />
           </View>
