@@ -1,14 +1,20 @@
 import React, {useState} from 'react';
 
-import {shipmentList} from '@/services/dummyData';
+import {getShimentListService, getShimentListServiceType} from '@/services';
 
 export const useHomeHooks = () => {
   const [loading, setLoading] = useState(false);
   const [shipmentListData, setShipmentListData] = useState();
 
-  const getShipmentList = () => {
+  const getShipmentList = async (props?: getShimentListServiceType) => {
     setLoading(true);
-    setTimeout(() => setShipmentListData(shipmentList), 3000);
+    try {
+      const response = await getShimentListService(props);
+      console.log('resssssss', response);
+      if (response?.status) {
+        setShipmentListData(response.data);
+      }
+    } catch {}
     setLoading(false);
   };
 

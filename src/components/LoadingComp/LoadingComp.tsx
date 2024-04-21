@@ -12,7 +12,7 @@ type Props = {
 
 export const LoadingComp = ({
   containerStyle,
-  color = tw.color('green'),
+  color = tw.color('secondary'),
 }: Props) => {
   return (
     <Animated.View
