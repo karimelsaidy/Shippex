@@ -9,6 +9,7 @@ import tw from '@/tw';
 import {wp} from '@/utils';
 
 type Props = {
+  choosedStatus: string[];
   handleFilter: (arg0: string[]) => void;
 };
 
@@ -22,9 +23,9 @@ const FilterIcon = () => (
   />
 );
 
-export const Filters = ({handleFilter}: Props) => {
+export const Filters = ({handleFilter, choosedStatus}: Props) => {
   const [showBottomSheet, setShowBottomSheet] = useState(false);
-  const [choosedStatus, setChoosedStatus] = useState<string[]>([]);
+  const [_choosedStatus, _setChoosedStatus] = useState<string[]>([]);
 
   const {t} = useTranslation();
   return (
@@ -45,6 +46,7 @@ export const Filters = ({handleFilter}: Props) => {
             <Text
               style={tw`interMed text-4 text-secondary`}
               onPress={() => {
+                _setChoosedStatus(choosedStatus);
                 setShowBottomSheet(false);
               }}>
               {t('buttons.cancel')}
@@ -57,7 +59,7 @@ export const Filters = ({handleFilter}: Props) => {
               style={tw`interMed text-4 text-secondary`}
               onPress={() => {
                 setShowBottomSheet(false);
-                handleFilter(choosedStatus);
+                handleFilter(_choosedStatus);
               }}>
               {t('buttons.done')}
             </Text>
@@ -68,13 +70,15 @@ export const Filters = ({handleFilter}: Props) => {
                 key={item.label}
                 label={item.label}
                 onPress={() =>
-                  setChoosedStatus(prev => _.xor(prev, [item.value]))
+                  _setChoosedStatus(prev => _.xor(prev, [item.value]))
                 }
                 btnStyle={tw`bg-primary2 mr-2 mb-2 px-3 rounded-3 border-2 border-primary2 ${
-                  choosedStatus.includes(item.value) ? ' border-secondary2' : ''
+                  _choosedStatus.includes(item.value)
+                    ? ' border-secondary2'
+                    : ''
                 }`}
                 textStyle={tw`text-independence ${
-                  choosedStatus.includes(item.value) ? 'text-secondary2' : ''
+                  _choosedStatus.includes(item.value) ? 'text-secondary2' : ''
                 }`}
               />
             ))}

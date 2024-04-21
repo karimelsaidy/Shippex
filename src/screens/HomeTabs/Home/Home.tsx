@@ -1,20 +1,22 @@
 import {useFocusEffect} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {FlatList, Image, Text, View} from 'react-native';
+import {Image, Text, View} from 'react-native';
 
 import {Images} from '@/assets';
 import SvgLogo from '@/assets/SvgComponents/SvgLogo';
-import {CheckBox, Header, ShipmentCard} from '@/components';
+import {CheckBox, Header, LoadingComp} from '@/components';
 import tw from '@/tw';
 
 import {useHomeHooks} from '../hooks';
-import {Filters, Scan, SearchComponent} from './Components';
+import {Filters, Scan, SearchComponent, ShipmentList} from './Components';
 
 export const Home = () => {
   const [markAll, setMarkAll] = useState(false);
   const {t} = useTranslation();
   const {loading, getShipmentList, shipmentListData} = useHomeHooks();
+  const [choosedStatus, setChoosedStatus] = useState<string[]>([]);
+  const [searchWord, setSearchWord] = useState<string>('');
 
   useFocusEffect(
     React.useCallback(() => {
@@ -44,11 +46,19 @@ export const Home = () => {
         <Text style={tw`text-black sfProSemibold text-7 mt-.5`} />
         <SearchComponent
           handleSearch={(word: string) => {
+            setSearchWord(word);
+            getShipmentList({status: choosedStatus, word});
             console.log('SearchComponent', word);
           }}
         />
         <View style={tw`flex-row justify-between my-5`}>
-          <Filters />
+          <Filters
+            choosedStatus={choosedStatus}
+            handleFilter={(arg0: string[]) => {
+              setChoosedStatus(choosedStatus);
+              getShipmentList({status: arg0, word: searchWord});
+            }}
+          />
           <Scan />
         </View>
         <View style={tw`flex-row justify-between items-center mb-4`}>
@@ -66,18 +76,14 @@ export const Home = () => {
             </Text>
           </View>
         </View>
-        <View style={tw`flex-1 `}>
-          <FlatList
-            style={tw`flex-1`}
-            contentContainerStyle={tw`flex-grow pb-[5%]`}
-            data={shipmentListData}
-            keyExtractor={item => item?._id}
-            renderItem={({item}) => (
-              <ShipmentCard {...item} markAllChecked={markAll} />
-            )}
-            ItemSeparatorComponent={() => <View style={tw`h-3`} />}
-            showsHorizontalScrollIndicator={false}
-          />
+        <View style={tw`flex-1`}>
+          <React.Suspense fallback={<LoadingComp />}>
+            <ShipmentList
+              markAll={markAll}
+              shipmentListData={shipmentListData}
+              loading={loading}
+            />
+          </React.Suspense>
         </View>
       </View>
     </View>
