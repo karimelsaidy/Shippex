@@ -22,7 +22,7 @@ export const shipmentList = [
     _id: 1,
     label: 'AWC',
     cardReference: '41785691423',
-    status: 'received',
+    status: 'error',
     address: {
       from: {city: 'Cairo', details: 'Dokki, 22 Nile St.'},
       to: {city: 'Alexandria', details: 'Smoha, 22 max St.'},
@@ -33,7 +33,7 @@ export const shipmentList = [
     _id: 2,
     label: 'AWD',
     cardReference: '41785691423',
-    status: 'received',
+    status: 'delivered',
     address: {
       from: {city: 'Cairo', details: 'Dokki, 22 Nile St.'},
       to: {city: 'Alexandria', details: 'Smoha, 22 max St.'},
@@ -55,7 +55,7 @@ export const shipmentList = [
     _id: 4,
     label: 'AWE',
     cardReference: '41785691423',
-    status: 'received',
+    status: 'onHold',
     address: {
       from: {city: 'Cairo', details: 'Dokki, 22 Nile St.'},
       to: {city: 'Alexandria', details: 'Smoha, 22 max St.'},
@@ -66,11 +66,21 @@ export const shipmentList = [
     _id: 5,
     label: 'AWG',
     cardReference: '41785691423',
-    status: 'received',
+    status: 'canceled',
     address: {
       from: {city: 'Cairo', details: 'Dokki, 22 Nile St.'},
       to: {city: 'Alexandria', details: 'Smoha, 22 max St.'},
     },
     phoneNumber: '+201060688416',
   },
+];
+
+export const shipmentStatusList = [
+  {label: 'received', value: 'received'},
+  {label: 'Error', value: 'error'},
+  {label: 'Delivered', value: 'delivered'},
+  {label: 'Canceled', value: 'canceled'},
+  {label: 'On Hold', value: 'onHold'},
+  {label: 'Lost', value: 'lost'},
+  {label: 'Put Way', value: 'putway'},
 ];

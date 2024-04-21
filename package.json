@@ -30,6 +30,7 @@
     "react-hook-form": "^7.51.3",
     "react-i18next": "^14.1.0",
     "react-native": "0.73.6",
+    "react-native-actions-sheet": "^0.9.3",
     "react-native-bootsplash": "^5.5.2",
     "react-native-bouncy-checkbox": "^4.0.0",
     "react-native-encrypted-storage": "^4.0.3",

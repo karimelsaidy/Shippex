@@ -3,11 +3,13 @@ import {useTranslation} from 'react-i18next';
 import Toast from 'react-native-toast-message';
 
 import {logInService, logInServiceType} from '@/services';
+import {useStore} from '@/store';
 import {appLang} from '@/utils';
 
 const SERVER_ERROR_MESSAGE = 'errorMessages.serverError';
 
 export const useLoginHooks = () => {
+  const {setUserData} = useStore(state => state.userSlice);
   const [loading, setLoading] = useState(false);
   const {t} = useTranslation();
 
@@ -17,9 +19,10 @@ export const useLoginHooks = () => {
       const response = await logInService(params);
       setLoading(false);
       if (response.status) {
+        setUserData(response.user);
         return {status: true};
       } else {
-        console.log()
+        console.log();
         Toast.show({
           type: 'ErrorInfo',
           text1:

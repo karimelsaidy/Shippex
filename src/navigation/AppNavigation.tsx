@@ -36,7 +36,7 @@ export const AppNavigation = () => {
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName={Routes.HOME_TABS}>
+        initialRouteName={Routes.WELCOME_SCREEN}>
         <Stack.Screen name={Routes.WELCOME_SCREEN} component={WelcomeScreen} />
         <Stack.Screen
           name={Routes.LOGIN}

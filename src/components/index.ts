@@ -1,4 +1,5 @@
 export * from './ActionButton';
+export * from './BottomSheet';
 export * from './Button';
 export * from './CheckBox';
 export * from './DashLine';

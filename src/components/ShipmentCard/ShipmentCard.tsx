@@ -1,7 +1,7 @@
-import React, {useState, useTransition} from 'react';
+import React, {useEffect, useState, useTransition} from 'react';
 import {useTranslation} from 'react-i18next';
 import {I18nManager, Image, Pressable, Text, View} from 'react-native';
-import Animated, {StretchOutY, StretchInY} from 'react-native-reanimated';
+import Animated, {StretchInY, StretchOutY} from 'react-native-reanimated';
 
 import {ActionButton, CheckBox, DashLine, Icon, Tag} from '@/components';
 import {Icons} from '@/src/assets';
@@ -16,8 +16,8 @@ type Props = {
     to: {city: string; details: string};
   };
   phoneNumber: string;
-  isChecked?: boolean;
   onChangeCheckCard?: (arg0: boolean) => void;
+  markAllChecked: boolean;
 };
 
 const WhatsAppIcon = () => (
@@ -46,13 +46,17 @@ export const ShipmentCard = ({
   address,
   phoneNumber,
   status,
-  isChecked = false,
+  markAllChecked,
   onChangeCheckCard = () => {},
 }: Props) => {
   const [expand, setExpand] = useState(false);
-  const [cardChicked, setCardChecked] = useState(isChecked);
+  const [cardChicked, setCardChecked] = useState(false);
 
   const {t} = useTranslation();
+
+  useEffect(() => {
+    setCardChecked(markAllChecked);
+  }, [markAllChecked]);
 
   return (
     <View
@@ -146,7 +150,7 @@ export const ShipmentCard = ({
               </Text>
             </View>
           </View>
-          <View style={tw`justify-end flex-row mt-4`}>
+          <View style={tw`justify-end flex-row mt-4 pr-3`}>
             <ActionButton
               label={t('buttons.call')}
               RenderRight={CallIcon}

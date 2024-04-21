@@ -31,7 +31,7 @@ const TagStyle = {
 const TagTextStyle = {
   received: tw`text-secondary`,
   error: tw`text-red4`,
-  delivered: tw`bg-green`,
+  delivered: tw`text-green`,
   canceled: tw`text-independence`,
   onHold: tw`text-yellow`,
 };
@@ -47,12 +47,12 @@ export const Tag = ({
   return (
     <Pressable
       style={tw.style(
-        `bg-primary2 px-1.5 py-3.5`,
+        `bg-primary2 px-1 py-1.5`,
         TagStyle[type],
         containerStyle,
       )}
       onPress={onPress}>
-      <Text style={tw.style(``, TagTextStyle[type], textStyle)}>
+      <Text style={tw.style(`text-2.75 interMed`, TagTextStyle[type], textStyle)}>
         {label || t(labelText[type])}
       </Text>
     </Pressable>
