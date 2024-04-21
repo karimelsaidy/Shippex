@@ -12,6 +12,7 @@ type Props = {
   StartComponent?: React.FC;
   title?: string;
   titleContainerStyle?: ViewStyle;
+  CenterComponent?: React.FC;
   EndComponent?: React.FC;
   titleStyle?: TextStyle;
   containerStyle?: ViewStyle;
@@ -29,6 +30,7 @@ export const Header = ({
   back,
   title,
   StartComponent,
+  CenterComponent,
   titleStyle,
   titleContainerStyle,
   EndComponent,
@@ -106,6 +108,7 @@ export const Header = ({
               {title}
             </Text>
           )}
+          {!!CenterComponent && <CenterComponent />}
         </View>
         <View style={tw`flex-1`}>
           <View style={tw`flex-row self-end`}>
