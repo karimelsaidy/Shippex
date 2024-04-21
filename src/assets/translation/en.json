@@ -17,7 +17,13 @@
     "wrongUrl": "that's not a valid url",
     "serverError": "An unexpected error occurred"
   },
-  "home": {"origin": "Origin", "destination": "Destination"},
+  "home": {
+    "origin": "Origin",
+    "destination": "Destination",
+    "hello": "Hello,",
+    "searching": "Searching",
+    "shipments": "Shipments"
+  },
   "buttons": {
     "login": "Login",
     "cancel": "Cancel",
@@ -27,6 +33,10 @@
     "canceled": "CANCELED",
     "onHold": "ON HOLD",
     "whatsApp": "WhatsApp",
-    "call": "Call"
+    "call": "Call",
+    "filter": "Filter",
+    "addScan": "Add Scan",
+    "markAll": "Mark All",
+    "done": "Done"
   }
 }
