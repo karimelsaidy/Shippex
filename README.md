@@ -43,6 +43,7 @@ This app is broken into different modules. Each module is broken into the follow
     - icons
     - images
     - translation
+    - SvgComponents
   - components
   - config
   - hooks
@@ -55,6 +56,7 @@ This app is broken into different modules. Each module is broken into the follow
   - types
   - utils
 - tokens
+- Here I am trying hard to separate the logic from the UI so that I can use the UI easily afterwards, whether in the same application or in another application so I try to separate one component into several separate components
 
 ## Style Guidelines
 
@@ -64,6 +66,11 @@ This app is broken into different modules. Each module is broken into the follow
 - This app uses the popular Airbnb style guidelines which is enforced by Eslint.
 - It also uses some additional rules from popular eslint configurations (see `.eslintrc.js`).
 like Don't use default exports. [Read this.](https://basarat.gitbook.io/typescript/main-1/defaultisbad) and ...etc
+- here we prefer fonts than images because of perofrmance and simplicity and app bundle and for this we use icoomon 
+to create a custom icons font [icoomoon](https://icomoon.io/app/#/select)
+- for svg if it's a static files and will not be changed frequently we can use here native svg support rather than react-native-svg 
+- for component and Dependability I prefer to build everything to reduce dependence on changing libraries and update problems after that, and then use that component in other projects, but depending on the time available for the project, whether this is allowed or not.
+ 
 
 ## Validation before push to git
 
@@ -74,4 +81,3 @@ like Don't use default exports. [Read this.](https://basarat.gitbook.io/typescri
 
 ## convert from Staging to Production
   - change variables value from staging to production in (./env)
-  
