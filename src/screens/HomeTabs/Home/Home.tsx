@@ -1,5 +1,6 @@
 import {useFocusEffect} from '@react-navigation/native';
-import React, {useRef, useState} from 'react';
+import _ from 'lodash';
+import React, {useCallback, useRef, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {
   Image,
@@ -24,6 +25,18 @@ export const Home = () => {
   const choosedStatus = useRef<string[]>([]);
   const searchWord = useRef('');
 
+  const UserAVatar = useCallback(
+    () => (
+      <Image
+        source={userData?.personalInfo?.avatar}
+        style={tw`rounded-full h-10 w-10`}
+        resizeMode="contain"
+      />
+    ),
+
+    [userData?.personalInfo?.avatar],
+  );
+
   useFocusEffect(
     React.useCallback(() => {
       getShipmentList();
@@ -37,14 +50,8 @@ export const Home = () => {
       <>
         <Header
           showNotification
-          StartComponent={() => (
-            <Image
-              source={userData?.personalInfo?.avatar}
-              style={tw`rounded-full h-10 w-10`}
-              resizeMode="contain"
-            />
-          )}
-          CenterComponent={() => <SvgLogo />}
+          StartComponent={UserAVatar}
+          CenterComponent={SvgLogo}
         />
         <View style={tw`flex-1 px-[3%] mt-3`}>
           <Text style={tw`interReg text-black opacity-60`}>
@@ -64,6 +71,8 @@ export const Home = () => {
             <Filters
               choosedStatus={choosedStatus.current}
               handleFilter={(arg0: string[]) => {
+                if (_.isEqual(arg0.sort(), choosedStatus.current.sort()))
+                  return;
                 choosedStatus.current = arg0;
                 getShipmentList({status: arg0, word: searchWord.current});
               }}
