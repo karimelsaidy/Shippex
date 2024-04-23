@@ -28,6 +28,6 @@ export async function logInService({
               },
             }),
       });
-    }, 3000);
+    }, 1500);
   });
 }
