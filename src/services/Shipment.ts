@@ -14,6 +14,6 @@ export async function getShimentListService(
         status: true,
         data: getShipmentList(props),
       });
-    }, 3000);
+    }, 1500);
   });
 }

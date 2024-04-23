@@ -1,8 +1,11 @@
+import {Images} from '@/assets';
+
 export const userData = {
   personalInfo: {
     _id: '10001',
     firstName: {en: 'karim', ar: 'كريم'},
     lastName: {en: 'Mohammed', ar: 'محمد'},
+    avatar: Images.avatar,
   },
 };
 
@@ -78,6 +81,28 @@ export const shipmentList = [
     label: 'HKL',
     cardReference: '2341234564',
     status: 'error',
+    address: {
+      from: {city: 'Cairo', details: 'Dokki, 22 Nile St.'},
+      to: {city: 'Alexandria', details: 'Smoha, 22 max St.'},
+    },
+    phoneNumber: '+201060688416',
+  },
+  {
+    _id: 7,
+    label: 'Abb',
+    cardReference: '2341234564',
+    status: 'error',
+    address: {
+      from: {city: 'Cairo', details: 'Dokki, 22 Nile St.'},
+      to: {city: 'Alexandria', details: 'Smoha, 22 max St.'},
+    },
+    phoneNumber: '+201060688416',
+  },
+  {
+    _id: 8,
+    label: 'ghi',
+    cardReference: '2341234564',
+    status: 'Canceled',
     address: {
       from: {city: 'Cairo', details: 'Dokki, 22 Nile St.'},
       to: {city: 'Alexandria', details: 'Smoha, 22 max St.'},
