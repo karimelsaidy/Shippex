@@ -32,15 +32,38 @@ export const AnimatedBootSplash = ({onAnimationEnd}: Props) => {
     };
   });
 
-  const imageAnimationStyle = useAnimatedStyle(() => ({
+  const wholeImageAnimation = useAnimatedStyle(() => ({
+    transform: [{scale: scaleUpAnimation.value}],
+  }));
+
+  const imageTopAnimationStyle = useAnimatedStyle(() => ({
+    transform: [{translateY: -translateAnimation.value}],
+    width: interpolate(
+      translateAnimation.value,
+      [0, ScreenHeight * 0.1],
+      [36.11, ScreenWidth],
+    ),
+    height: interpolate(translateAnimation.value, [0, ScreenHeight], [12, 144]),
+  }));
+
+  const imageBottomAnimationStyle = useAnimatedStyle(() => ({
     transform: [
-      {scale: scaleUpAnimation.value},
-      {translateY: -translateAnimation.value},
+      {
+        translateY:
+          translateAnimation.value === 0
+            ? -translateAnimation.value
+            : -translateAnimation.value - 5,
+      },
     ],
     width: interpolate(
       translateAnimation.value,
-      [0, -ScreenHeight * 0.1],
-      [ScreenWidth * 20, 200],
+      [0, ScreenHeight * 0.1],
+      [35.61, ScreenWidth],
+    ),
+    height: interpolate(
+      translateAnimation.value,
+      [0, ScreenHeight],
+      [22.79, 144],
     ),
   }));
 
@@ -51,21 +74,27 @@ export const AnimatedBootSplash = ({onAnimationEnd}: Props) => {
     navigationBarTranslucent: false,
 
     animate: () => {
-      scaleUpAnimation.value = withTiming(3.6, {duration: 1000});
-      translateAnimation.value = withTiming(ScreenHeight * 0.1, {
-        duration: 1000,
-      });
-      colorAnimation.value = withTiming(
-        1,
-        {
-          duration: 1000,
-        },
-        () => {
-          'worklet';
+      scaleUpAnimation.value = withTiming(4, {duration: 700}, () => {
+        translateAnimation.value = withTiming(
+          ScreenHeight * 0.1,
+          {
+            duration: 300,
+          },
+          () => {
+            colorAnimation.value = withTiming(
+              1,
+              {
+                duration: 300,
+              },
+              () => {
+                'worklet';
 
-          runOnJS(onAnimationEnd)();
-        },
-      );
+                runOnJS(onAnimationEnd)();
+              },
+            );
+          },
+        );
+      });
     },
   });
 
@@ -77,7 +106,22 @@ export const AnimatedBootSplash = ({onAnimationEnd}: Props) => {
         tw`flex-1 absolute z-10`,
         container.style,
       ]}>
-      <Animated.Image {...logo} style={[logo.style, imageAnimationStyle]} />
+      <Animated.View style={[tw`h-9 justify-between`, wholeImageAnimation]}>
+        <Animated.Image
+          source={Icons.topSplashLogo}
+          style={[tw`w-9.0275 h-3`, imageTopAnimationStyle]}
+          onLayout={container.onLayout}
+          resizeMode="stretch"
+          onLoadEnd={logo.onLoadEnd}
+        />
+        <Animated.Image
+          source={Icons.bottomSplashLogo}
+          style={[tw`w-9.1525 h-5.6975`, imageBottomAnimationStyle]}
+          onLayout={container.onLayout}
+          resizeMode="stretch"
+          onLoadEnd={logo.onLoadEnd}
+        />
+      </Animated.View>
     </Animated.View>
   );
 };

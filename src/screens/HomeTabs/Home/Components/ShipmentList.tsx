@@ -24,7 +24,7 @@ export const ShipmentList = ({shipmentListData, markAll, loading}: Props) => {
         ItemSeparatorComponent={() => <View style={tw`h-3`} />}
         showsHorizontalScrollIndicator={false}
       />
-      {!!loading && <LoadingComp containerStyle={tw`w-full h-full`} />}
+      {!!loading && <LoadingComp containerStyle={tw`w-full h-25  mt-3`} />}
     </View>
   );
 };

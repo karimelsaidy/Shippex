@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
 
 import {getShimentListService, getShimentListServiceType} from '@/services';
+import {useStore} from '@/src/store';
 
 export const useHomeHooks = () => {
+  const {userData} = useStore(state => state.userSlice);
+
   const [loading, setLoading] = useState(false);
   const [shipmentListData, setShipmentListData] = useState();
 
@@ -22,5 +25,6 @@ export const useHomeHooks = () => {
     loading,
     getShipmentList,
     shipmentListData,
+    userData,
   };
 };
